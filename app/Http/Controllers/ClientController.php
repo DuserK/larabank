@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
-use App\Http\Controllers\Controller;
+// use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 // use App\Http\Requests\Request;
 // use App\Http\Requests\Request; // specializuoti requestai
@@ -15,7 +15,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        return view('clients.index', [
+            'clients' => Client::all()
+        ]);
     }
 
     /**
@@ -52,7 +54,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        
     }
 
     /**
@@ -66,8 +68,19 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function delete( Client $client)
+    {
+        return view('clients.delete', [
+            'client' => $client
+        ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(Client $client)
     {
-        //
+        $client->delete();
+        return redirect()->route('clients-index');
     }
 }

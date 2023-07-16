@@ -21,11 +21,12 @@
                         <label class="form-label" required>Asmens kodas</label>
                         <input class="form-control"  name="person_id"  type="number" minlength="11" maxlength="11">
                     </div>
-
+                    
                     <button type="button" class="btn onHover mt-4">
-                    <a class="" href="./"> Atgal</a>
+                        <a class="" href="./"> Atgal</a>
                     </button>
                     <button type="submit" class="btn onHover mt-4">Išsaugoti</button>
+                    @csrf
                 </form>
             </div>
         </div>
