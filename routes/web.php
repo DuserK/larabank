@@ -23,8 +23,8 @@ Route::prefix('/clients')->name('clients-')->group(function () {
     Route::get('/', [Cl::class, 'index'])->name('index');
     Route::get('/create', [Cl::class, 'create'])->name('create');
     Route::post('/', [Cl::class, 'store'])->name('store');
-    // Route::get('/{client}/edit', [Cl::class, 'edit'])->name('edit');
-    // Route::put('/{client}', [Cl::class, 'update'])->name('update');
+    Route::get('/edit/{client}', [Cl::class, 'edit'])->name('edit');
+    Route::put('/{client}', [Cl::class, 'update'])->name('update');
     Route::get('/delete/{client}', [Cl::class, 'delete'])->name('delete'); // {client} - parametras (id - paimamas automatiskai kaip default reiksme)
     Route::delete('/{client}', [Cl::class, 'destroy'])->name('destroy');
 });

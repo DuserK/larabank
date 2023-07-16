@@ -38,7 +38,9 @@ class ClientController extends Controller
         $client->surname = $request->surname;
         $client->person_id = $request->person_id;
         $client->save();
-        return redirect()->route('clients-index');
+        return redirect()
+        ->route('clients-index')
+        ->with('success', 'Sėkmingai pridėtas naujas klientas.');
     }
 
     /**
@@ -54,7 +56,9 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        
+        return view('clients.edit', [
+            'client' => $client
+        ]);
     }
 
     /**
@@ -62,7 +66,12 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $client->name = $request->name;
+        $client->surname = $request->surname;
+        $client->save();
+        return redirect()
+        ->route('clients-index')
+        ->with('success', 'Kliento duomenys sėkmingai pakeisti.');
     }
 
     /**
@@ -81,6 +90,8 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
-        return redirect()->route('clients-index');
+        return redirect()
+        ->route('clients-index')
+        ->with('success', 'Klientas sėkmingai pašalintas');;
     }
 }
