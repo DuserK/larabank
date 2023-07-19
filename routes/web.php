@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController as Cl;
+use App\Http\Controllers\AccountController as Acc;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +35,15 @@ Route::prefix('/clients')->name('clients-')->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Accounts
+Route::prefix('/accounts')->name('accounts-')->group(function () {
+
+    Route::get('/', [Acc::class, 'index'])->name('index');
+    Route::get('/create', [Acc::class, 'create'])->name('create');
+    Route::post('/', [Acc::class, 'store'])->name('store');
+    Route::get('/edit/{account}', [Acc::class, 'edit'])->name('edit');
+    Route::put('/{account}', [Acc::class, 'update'])->name('update');
+    Route::get('/delete/{account}', [Acc::class, 'delete'])->name('delete'); // {account} - parametras (id - paimamas automatiskai kaip default reiksme)
+    Route::delete('/{account}', [Acc::class, 'destroy'])->name('destroy');
+});
