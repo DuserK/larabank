@@ -9,8 +9,13 @@
             <h3 class = " title">Klientų sąrašas</h3>
             @forelse ($clients as $client)
             <div class="row info-account">
-                <div class="col-4">{{$client->name}} {{$client->surname}}</div>
-                <div class="col-2">{{$client->person_id}}</div>
+                <div class="col-4">
+                    <div>
+                        <h4>{{$client->name}} {{$client->surname}}</h4>
+                        <p>{{$client->person_id}}</p>
+                    </div>
+                </div>
+                <div class="col-2"></div>
                 <div class="col-2 edit">
                     <a href="{{ route('clients-edit', $client) }}"  class='plus onHoverIcon'><i class="fa-regular fa-pen-to-square"></i></a>
                     <a href="{{ route('clients-delete', $client) }}"  class='delete onHoverIcon'><i class="fa-solid fa-trash"></i></a>

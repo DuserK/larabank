@@ -95,6 +95,7 @@
         <main class="py-4">
             @yield('content')
             @include('msg.messages')
+            @include('msg.error')
         </main>
     </div>
 </body>

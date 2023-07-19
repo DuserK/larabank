@@ -16,6 +16,7 @@
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
+    
     .logo-box {
         display: flex;
         justify-content: center;
@@ -61,16 +62,18 @@
 }
 
   .info-account {
-    margin: 2px 0px;
+    margin: 5px 0px;
     background-color: #fff;
     line-height: 2em;
-    padding: 0.4em 5px;
+    padding: 1em 0.5em;
     border-radius: 20px;
+
+    .info-account .edit {
+      display: flex;
+      justify-content: space-around;
+    }
   }
-  .info-account .edit {
-    display: flex;
-    justify-content: space-around;
-  }
+  
   .buttonLink {
     text-decoration: none;
     color: #fff;

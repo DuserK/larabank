@@ -11,15 +11,15 @@
                 <form action="{{ route('clients-store') }}" method="post">
                     <div class="mb-3">
                         <label class="form-label" required>Vardas</label>
-                        <input class="form-control" name="name" type="text" value="">
+                        <input class="form-control" name="name" type="text" value="{{ old('name')}}">
                     </div>
                     <div class="mb-3">
                         <label class="form-label"required>Pavardė</label>
-                        <input class="form-control" name="surname" type="text">
+                        <input class="form-control" name="surname" type="text" value="{{ old('surname')}}">
                     </div>
                     <div class="mb-3">
                         <label class="form-label" required>Asmens kodas</label>
-                        <input class="form-control"  name="person_id"  type="number" minlength="11" maxlength="11">
+                        <input class="form-control"  name="person_id"  type="number" minlength="11" maxlength="11" value="{{ old('person_id')}}">
                     </div>
                     
                     <button type="button" class="btn onHover mt-4">
