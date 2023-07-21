@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController as Cl;
 use App\Http\Controllers\AccountController as Acc;
+use App\Http\Controllers\TransferController as Trf;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +38,11 @@ Route::get('/register', function () {
     return redirect()->route('login');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');// pagrindiniam langui
+//Transfers
+Route::prefix('/transfers')->name('transfers-')->group(function () {
+    
+    Route::get('/', [Trf::class, 'index'])->name('index');
+});
 
 // Accounts
 Route::prefix('/accounts')->name('accounts-')->group(function () {

@@ -39,6 +39,13 @@
                             </ul>
                             <!-- Right Side Of Navbar -->
                             <ul class="navbar-nav ms-auto">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{ route('transfers-index') }}">
+                                            Pervedimai
+                                        </a>
+                                    </li>
+                                </ul>
                                 <!-- Authentication Links -->
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
