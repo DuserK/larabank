@@ -43,6 +43,7 @@ Route::prefix('/accounts')->name('accounts-')->group(function () {
 
     Route::get('/', [Acc::class, 'index'])->name('index');
     Route::get('/create', [Acc::class, 'create'])->name('create');
+    Route::get('/createStore/{client}', [Acc::class, 'createStore'])->name('createStore');
     Route::post('/', [Acc::class, 'store'])->name('store');
     Route::get('/edit/{account}', [Acc::class, 'edit'])->name('edit');
     Route::put('/{account}', [Acc::class, 'update'])->name('update');

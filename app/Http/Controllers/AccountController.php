@@ -41,6 +41,19 @@ class AccountController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    public function createStore(Client $client)
+    {
+        $account = new Account;
+      $account->client_id = $client->id;
+      $account->iban = Account::accountNumberGen();
+      $account->balance = 0;
+
+      $account->save();
+      return redirect()
+          ->route('clients-index')
+          ->with('success', 'Klientui  nauja sąskaita sėkmingai sukurta.');
+          
+    }
     public function store(Request $request)
     {
         $validator = Validator::make(

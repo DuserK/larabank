@@ -29,7 +29,14 @@
                     
                 </div>
                 <div class="col-6">
-                    <h4>Sąskaitos: </h4>
+                    <div class="col-12 row mt-4">
+                        <h4 class="col-5">Sąskaitos:</h4>
+                        <div class="col-7 d-flex justify-content-end">
+                            <button type="button" class="btn onHover">
+                                <a href="{{ route('accounts-createStore', $client) }}"  class='delete onHoverIcon'>Pridėti naują sąskaitą <i class="fa-solid fa-plus"></i></a>
+                            </button>
+                        </div>
+                    </div>
                     @if($client->accounts()->count() > 0)
                     <ol class="list-group list-group-numbered list-group-flush">
                         @foreach($client->accounts as $account)
@@ -37,11 +44,11 @@
                                 <div class="col-12 row mt-4">
                                     <div class="col-5">{{$account->iban}}</div>
 
-                                    <div class="edit col-7 ">
+                                    <div class="edit col-7 d-flex justify-content-end">
                                         <button type="button" class="btn onHover">
                                             <a href="{{ route('accounts-edit', $account) }}"  class='plus onHoverIcon'> Redaguoti <i class="fa-regular fa-pen-to-square"></i></a>
                                         </button>
-                                        <button type="button" class="btn onHover">
+                                        <button type="button" class="btn onHover ms-1">
                                             <a href="{{ route('accounts-delete', ['account'=>$account, 'client'=> $client]) }}"  class='delete onHoverIcon'>Trinti <i class="fa-solid fa-trash"></i></a>
                                         </button>
                                     </div>
