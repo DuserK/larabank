@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('client_id');
             $table->foreign('client_id')->references('id')->on('clients');
-            $table->char('iban', 23);
+            $table->char('iban', 24);
             $table->decimal('balance', 20, 2);
             $table->timestamps();
         });

@@ -32,9 +32,11 @@ Route::prefix('/clients')->name('clients-')->group(function () {
 
 
 // Users
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes(['register' => false]);
+Route::get('/register', function () {
+    return redirect()->route('login');
+});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');// pagrindiniam langui
 
 // Accounts
 Route::prefix('/accounts')->name('accounts-')->group(function () {

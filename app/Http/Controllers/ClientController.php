@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Account;
 // use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -44,9 +45,7 @@ class ClientController extends Controller
                 'person_id' => 
                 [
                     'required',
-                    // 'min:11',
-                    // 'max:11',
-                    'size:11',
+                    'digits:11',
                     'unique:clients',
                     'integer',
                 ],
@@ -63,9 +62,7 @@ class ClientController extends Controller
                 'surname.max' => 'Pavardė per ilga.',
                 'surname.alpha' => 'Pavardė gali būti sudaryta tik iš raidžių.',
                 'person_id.required' => 'Asmens kodas privalomas.',
-                // 'person_id.min' => 'Asmens kodą turi sudaryti 11 skaičių min ',
-                'person_id.size' => 'Asmens kodą turi sudaryti 11 skaičių min ',
-                // 'person_id.max' => 'Asmens kodą turi sudaryti 11 skaičių. max '. strlen($request->person_id),
+                'person_id.size' => 'Asmens kodą turi sudaryti 11 skaičių.',
                 'person_id.unique' => 'Toks asmens kodas jau egzistuoja.',
                 'person_id.integer' => 'Asmens kodą turi sudaryti tik skaičiai.',
             ]);
@@ -160,6 +157,11 @@ class ClientController extends Controller
      */
     public function delete( Client $client)
     {
+        if($client->accounts()->count()){
+            return redirect()
+            ->back()
+            ->with('warning', 'Klientas turi sąskaitų, jo negalima pašalinti.');
+        }
         return view('clients.delete', [
             'client' => $client
         ]);

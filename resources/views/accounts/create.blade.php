@@ -11,17 +11,16 @@
                 <form action="{{ route('accounts-store') }}" method="post">
                     <div class="mb-3">
                         <label class="form-label"required>Klientas</label>
-                        <select class="form-select" name="client_id">
+                        <select class="form-select mb-2" name="client_id">
                             @foreach ($clients as $client)
-                                <option value="{{$client->id}}">{{$client->name}} {{$client->surname}}</option>
+                                <option value="{{$client->id}}">{{$client->name}} {{$client->surname}} {{$client->person_id}}</option>
                             @endforeach
-                        {{-- <h4>{{$account->$client->name}} {{$account->$client->surname}}</h4> --}}
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label"required>Sąskaitos numeris</label>
+                        <label class="form-label" required>Sąskaitos numeris</label>
                         <input class="form-control" name="iban" type="text" value="{{$iban}}" readonly>
                     </div>
-                    
                     <button type="button" class="btn onHover mt-4">
                         <a class="" href="./"> Atgal</a>
                     </button>

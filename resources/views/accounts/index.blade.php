@@ -4,15 +4,15 @@
 
 
 <div class="row justify-content-md-center">
-    <div class="col-lg-10 col-10">
+    <div class="col-lg-12 col-12">
         <div class="">
             <h3 class = " title">Sąskaitų sąrašas</h3>
             @forelse ($accounts as $account)
             <div class="row info-account">
                 <div class="col-4">
                     <div>
-                        {{-- <h4>{{$account->name}} {{$account->surname}}</h4>
-                        <p>{{$account->person_id}}</p> --}}
+                        <h4>{{$account->client->name}} {{$account->client->surname}}</h4>
+                        <p>{{$account->iban}}</p>
                     </div>
                 </div>
                 <div class="col-2"></div>

@@ -18,7 +18,7 @@
                         <input class="form-control" name="surname" type="text" value="{{$client->surname}}">
                     </div>
                     <button type="button" class="btn onHover mt-4">
-                        <a class="" href="./"> Atgal</a>
+                        <a class="" href="{{ route('clients-index') }}"> Atgal</a>
                     </button>
                     <button type="submit" class="btn onHover mt-4">Išsaugoti</button>
                     @method('put')

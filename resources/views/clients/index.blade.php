@@ -4,21 +4,56 @@
 
 
 <div class="row justify-content-md-center">
-    <div class="col-lg-10 col-10">
+    <div class="col-lg-12 col-12">
         <div class="">
             <h3 class = " title">Klientų sąrašas</h3>
             @forelse ($clients as $client)
             <div class="row info-account">
-                <div class="col-4">
+                <div class="col-4  client-box">
                     <div>
-                        <h4>{{$client->name}} {{$client->surname}}</h4>
-                        <p>{{$client->person_id}}</p>
+                        <div class ="">
+                            <h4>{{$client->name}} {{$client->surname}}</h4>
+                            <p>{{$client->person_id}}</p>
+                        </div>
+                        <div class=" edit">
+                            <button type="button" class="btn onHover mt-1">
+                                <a href="{{ route('clients-edit', $client) }}"  class='plus onHoverIcon'> Redaguoti <i class="fa-regular fa-pen-to-square"></i></a>
+                            </button>
+                            <button type="button" class="btn onHover mt-1">
+                                <a href="{{ route('clients-delete', $client) }}"  class='delete onHoverIcon'>Trinti <i class="fa-solid fa-trash"></i></a>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-2"></div>
-                <div class="col-2 edit">
-                    <a href="{{ route('clients-edit', $client) }}"  class='plus onHoverIcon'><i class="fa-regular fa-pen-to-square"></i></a>
-                    <a href="{{ route('clients-delete', $client) }}"  class='delete onHoverIcon'><i class="fa-solid fa-trash"></i></a>
+                <div class="col-1">
+                    
+                </div>
+                <div class="col-6">
+                    <h4>Sąskaitos: </h4>
+                    @if($client->accounts()->count() > 0)
+                    <ol class="list-group list-group-numbered list-group-flush">
+                        @foreach($client->accounts as $account)
+                            <li class="account-list">
+                                <div class="col-12 row mt-4">
+                                    <div class="col-5">{{$account->iban}}</div>
+
+                                    <div class="edit col-7 ">
+                                        <button type="button" class="btn onHover">
+                                            <a href="{{ route('accounts-edit', $account) }}"  class='plus onHoverIcon'> Redaguoti <i class="fa-regular fa-pen-to-square"></i></a>
+                                        </button>
+                                        <button type="button" class="btn onHover">
+                                            <a href="{{ route('accounts-delete', ['account'=>$account, 'client'=> $client]) }}"  class='delete onHoverIcon'>Trinti <i class="fa-solid fa-trash"></i></a>
+                                        </button>
+                                    </div>
+                                </div>
+                                <p>Likutis: {{$account->balance}} €</p>
+                            </li>
+                        @endforeach
+                    </ol>
+                @else
+                    <p class="mb-3">Sąskaitų sąrašas tuščias.</p>
+                    {{-- <button class="btn btn-outline-success mb-3" onclick="window.location.href='{{route('accounts-create', ['client_id' => $client->id])}}'">Add Account</button> --}}
+                @endif
                 </div>
             </div>
             @empty

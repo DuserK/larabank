@@ -10,18 +10,12 @@
                 Ištrinti sąskaitą?
             </h3>
             <div class="">
-                <form class = table-form action="{{ route('clients-destroy', $client) }}" method="post">
+                <form class = table-form action="{{ route('accounts-destroy', $account) }}" method="post">
                     <div class="mb-3">
-                        <label class="form-label" required>Vardas: <span>{{$client->name}}</span></label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label"required>Pavardė: <span>{{$client->surname}}</span></label>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" required>Asmens kodas: <span>{{$client->person_id}}</span></label>
+                        <label class="form-label" required>Sąskaitos numeris: <span>{{$account->iban}}</span></label>
                     </div>
                     <button type="button" class="btn onHover">
-                        <a class="buttonLink" href="{{ route('clients-index') }}"> Grįžti</a>
+                        <a class="buttonLink" href="{{ route('accounts-index') }}"> Grįžti</a>
                     </button>
                     <button type="submit" class="btn onHover  btn-red">Trinti</button>
                     @method('delete')

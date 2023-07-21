@@ -14,18 +14,22 @@
                         <p>{{$account->iban}}</p> --}}
                     </div>
                     <div class="mb-3">
+                        <label class="form-label"required>Sąskaitos numeris: </label>
+                        <p>{{$account->iban}}</p>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label"required>Balansas</label>
                         <p>{{$account->balance}}</p>
                     </div>
                     <div class="mb-3">
                         <label class="form-label"required>Įveskite sumą, Eur</label>
-                        <input class="form-control" name="balance" type="number" value="0">
+                        <input class="form-control" name="amount" type="number" placeholder="0">
                     </div>
                     <button type="button" class="btn onHover mt-4">
-                        <a class="" href="./"> Atgal</a>
+                        <a class="" href="{{ route('clients-index') }}"> Grįžti</a>
                     </button>
-                    <button type="submit" class="btn btn-success m-1" name="add" value=1>Pridėti</button>
-                    <button type="submit" class="btn btn-warning m-1" name="withdraw" value=1>Nuskaičiuoti</button>
+                    <button type="submit" class="btn onHover btn-green mt-4" name="add" value=1>Pridėti</button>
+                    <button type="submit" class="btn onHover btn-red mt-4" name="withdraw" value=1>Nuskaičiuoti</button>
                     @method('put')
                     @csrf
                 </form>
