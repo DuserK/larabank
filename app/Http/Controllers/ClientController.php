@@ -157,10 +157,14 @@ class ClientController extends Controller
      */
     public function delete( Client $client)
     {
-        if($client->accounts()->count()){
+        $total = 0;
+        foreach($client->accounts as $account){
+            $total += $account->balance;
+        }
+        if($total){
             return redirect()
             ->back()
-            ->with('warning', 'Klientas turi sąskaitų, jo negalima pašalinti.');
+            ->with('warning', 'Klientas turi sąskaitų, su lėšomis.');
         }
         return view('clients.delete', [
             'client' => $client
@@ -172,9 +176,10 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
+        $client->accounts()->delete();
         $client->delete();
         return redirect()
-        ->route('clients-index')
-        ->with('success', 'Klientas sėkmingai pašalintas');;
+            ->route('clients-index')
+            ->with('success', 'Klientas sėkmingai pašalintas');;
     }
 }
