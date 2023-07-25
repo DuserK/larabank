@@ -17,8 +17,13 @@ class ClientController extends Controller
      */
     public function index()
     {
+        // $clients = Client::where('id', '>', 0)
+        //     ->orderBy('surname')
+        //     ->get();
         return view('clients.index', [
-            'clients' => Client::all()
+            'clients' => Client::where('id', '>', 0)
+            ->orderBy('surname')
+            ->get()
         ]);
     }
 

@@ -1,5 +1,5 @@
 @if ($errors->any())
-    <div id="hideMeAfter5Seconds" class = "messages-box">
+    <div id="hideMeAfter5Seconds" class = "">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-10">

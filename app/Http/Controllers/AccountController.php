@@ -124,7 +124,7 @@ class AccountController extends Controller
 
         // Withdraw
         if (isset($request->withdraw)) {
-            if ($account->balance < $amount) {
+            if ($account->balance < $amount && $account->balance > 0) {
                 return redirect()
                     ->back()
                     ->with('warning', 'Nepakanka lėšų.');

@@ -32,7 +32,7 @@
                             <!-- Left Side Of Navbar -->
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">
+                                    <a class="nav-link active onHoverNav" aria-current="page" href="{{ route('home') }}">
                                         Pagrindinis
                                     </a>
                                 </li>
@@ -41,34 +41,34 @@
                             <ul class="navbar-nav ms-auto">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="{{ route('transfers-index') }}">
+                                        <a class="nav-link active onHoverNav" aria-current="page" href="{{ route('transfers-index') }}">
                                             Pervedimai
                                         </a>
                                     </li>
                                 </ul>
                                 <!-- Authentication Links -->
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle onHoverNav" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         Klientai
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('clients-index') }}">
+                                        <a class="dropdown-item onHoverNav" href="{{ route('clients-index') }}">
                                             Klientų sąrašas
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('clients-create') }}">
+                                        <a class="dropdown-item onHoverNav" href="{{ route('clients-create') }}">
                                             Sukurti naują klientą
                                         </a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle onHoverNav" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         Sąskaitos
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('accounts-index') }}">
+                                        <a class="dropdown-item onHoverNav" href="{{ route('accounts-index') }}">
                                             Sąskaitų sąrašas
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('accounts-create') }}">
+                                        <a class="dropdown-item onHoverNav" href="{{ route('accounts-create') }}">
                                             Sukurti naują sąskaitą
                                         </a>
                                     </div>
@@ -76,7 +76,7 @@
                                 @guest
                                     @if (Route::has('login'))
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                            <a class="nav-link onHoverNav" href="{{ route('login') }}">{{ __('Login') }}</a>
                                         </li>
                                     @endif
                                     @if (Route::has('register'))
@@ -86,11 +86,11 @@
                                     @endif
                                 @else
                                     <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle onHoverNav" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }}
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                            <a class="dropdown-item onHoverNav" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}

@@ -70,7 +70,7 @@
     .client-box {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: left;
       flex-wrap: wrap;
       gap: 5px;
     }
@@ -167,6 +167,18 @@
     background-color: transparent;
     border-radius: 20px;
     transition: 0.2s ease-in-out;
+    line-height: 1.5em;
+  }
+  .onHoverNav {
+    border: solid 1px #ffffff00;
+    border-radius: 20px;
+  
+    line-height: 1.5em;
+  }
+  .onHoverNav:hover {
+    border: solid 1px #779597;
+    border-radius: 20px;
+
     line-height: 1.5em;
   }
   .onHover.btn {

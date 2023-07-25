@@ -15,7 +15,10 @@
                                 <label class="form-label"required>Siuntėjas:</label>
                                 <select class="form-select mb-2" name="sender">
                                     @foreach ($accounts as $account)
-                                        <option value="{{$account->id}}">{{$account->client->name}} {{$account->client->surname}} | {{$account->client->person_id}} | {{$account->iban}} | {{$account->balance}} €</option>
+                                        @if($account->balance > 0) {
+                                            <option value="{{$account->id}}">{{$account->client->name}} {{$account->client->surname}} | {{$account->client->person_id}} | {{$account->iban}} | {{$account->balance}} €</option>
+                                        }
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>

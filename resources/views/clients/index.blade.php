@@ -17,10 +17,10 @@
                         </div>
                         <div class=" edit">
                             <button type="button" class="btn onHover mt-1">
-                                <a href="{{ route('clients-edit', $client) }}"  class='plus onHoverIcon'> Redaguoti <i class="fa-regular fa-pen-to-square"></i></a>
+                                <a href="{{ route('clients-edit', $client) }}"  > Redaguoti <i class="fa-regular fa-pen-to-square"></i></a>
                             </button>
                             <button type="button" class="btn onHover mt-1">
-                                <a href="{{ route('clients-delete', $client) }}"  class='delete onHoverIcon'>Trinti <i class="fa-solid fa-trash"></i></a>
+                                <a href="{{ route('clients-delete', $client) }}"  >Trinti <i class="fa-solid fa-trash"></i></a>
                             </button>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <h4 class="col-5">Sąskaitos:</h4>
                         <div class="col-7 d-flex justify-content-end">
                             <button type="button" class="btn onHover">
-                                <a href="{{ route('accounts-createStore', $client) }}"  class='delete onHoverIcon'>Pridėti naują sąskaitą <i class="fa-solid fa-plus"></i></a>
+                                <a href="{{ route('accounts-createStore', $client) }}"  >Pridėti naują sąskaitą <i class="fa-solid fa-plus"></i></a>
                             </button>
                         </div>
                     </div>
@@ -46,10 +46,10 @@
 
                                     <div class="edit col-7 d-flex justify-content-end">
                                         <button type="button" class="btn onHover">
-                                            <a href="{{ route('accounts-edit', $account) }}"  class='plus onHoverIcon'> Redaguoti <i class="fa-regular fa-pen-to-square"></i></a>
+                                            <a href="{{ route('accounts-edit', $account) }}"  > Redaguoti <i class="fa-regular fa-pen-to-square"></i></a>
                                         </button>
                                         <button type="button" class="btn onHover ms-1">
-                                            <a href="{{ route('accounts-delete', ['account'=>$account, 'client'=> $client]) }}"  class='delete onHoverIcon'>Trinti <i class="fa-solid fa-trash"></i></a>
+                                            <a href="{{ route('accounts-delete', ['account'=>$account, 'client'=> $client]) }}" >Trinti <i class="fa-solid fa-trash"></i></a>
                                         </button>
                                     </div>
                                 </div>
