@@ -42,6 +42,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('/transfers')->name('transfers-')->group(function () {
     
     Route::get('/', [Trf::class, 'index'])->name('index');
+    Route::post('/', [Trf::class, 'transfer'])->name('transfer');
 });
 
 // Accounts

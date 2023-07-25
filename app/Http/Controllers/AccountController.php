@@ -84,7 +84,7 @@ class AccountController extends Controller
       $account->save();
       return redirect()
           ->route('accounts-index')
-          ->with('success', 'Klientui  nauja sąskaita sėkmingai sukurta.');
+          ->with('success', 'Nauja sąskaita klientui  sukurta sėkmingai.');
     }
 
     /**

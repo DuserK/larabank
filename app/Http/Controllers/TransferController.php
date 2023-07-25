@@ -6,8 +6,8 @@ use App\Models\Transfer;
 use App\Models\Account;
 use App\Models\Client;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTransferRequest;
-use App\Http\Requests\UpdateTransferRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TransferController extends Controller
 {
@@ -29,51 +29,40 @@ class TransferController extends Controller
     );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function transfer(Request $request, Account $account)
     {
-        //
-    }
+        $amount = $request->amount;
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreTransferRequest $request)
-    {
-        //
-    }
+        $validator = Validator::make(
+        $request->all(),[
+            'amount' => ['required', 'min:0', 'not_in:0', 'integer']
+        ],
+        [
+            'amount.required' => 'Įveskite sumą!',
+            'amount.min', 'amount.not_in' => 'Pervedama suma negali būti 0'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Transfer $transfer)
-    {
-        //
-    }
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Transfer $transfer)
-    {
-        //
-    }
+        $sender = Account::find($request->sender);
+        $receiver = Account::find($request->receiver);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTransferRequest $request, Transfer $transfer)
-    {
-        //
-    }
+        if ($sender->balance >= $request->amount){
+            $sender->balance -= $request->amount;
+            $receiver->balance += $request->amount;
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Transfer $transfer)
-    {
-        //
+            $sender->save();
+            $receiver->save();
+            return redirect()
+                ->back()
+                ->with('success', $amount . ' € from ' . $sender->client->first_name . ' ' . $sender->client->last_name . ' sąskaitos nr. ' . $sender->iban . ' has been transfared to ' . $receiver->client->first_name . ' ' . $receiver->client->last_name . ' sąskaitos nr. ' . $receiver->iban . '!');
+        }
+
+        return redirect()
+            ->back()
+            ->with('warrning', 'Siuntėjas neturi pakankamai lėšų!');
     }
 }

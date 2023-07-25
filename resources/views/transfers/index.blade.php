@@ -8,12 +8,12 @@
         <div class="">
             <h3 class = " title">Pervedimai tarp sąskaitų</h3>
             <div class="table-form">
-                <form action="" method="post">
+                <form action="{{route('transfers-transfer')}}" method="post">
                     <div class="d-flex justify-content-around">
                         <div class = "col-5">
                             <div class="mb-3">
                                 <label class="form-label"required>Siuntėjas:</label>
-                                <select class="form-select mb-2" name="client_id">
+                                <select class="form-select mb-2" name="sender">
                                     @foreach ($accounts as $account)
                                         <option value="{{$account->id}}">{{$account->client->name}} {{$account->client->surname}} | {{$account->client->person_id}} | {{$account->iban}} | {{$account->balance}} €</option>
                                     @endforeach
@@ -21,7 +21,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" required>Įveskite sumą:</label>
-                                <input class="form-control" name="ammount" type="number" value="">
+                                <input class="form-control" name="amount" type="number" value="">
                             </div>
                             
                         </div>
@@ -34,7 +34,7 @@
                         <div class = "col-5 d-flex align-items-center">
                             <div class="mb-3">
                                 <label class="form-label"required>Gavėjas:</label>
-                                <select class="form-select mb-2" name="client_id">
+                                <select class="form-select mb-2" name="receiver">
                                     @foreach ($accounts as $account)
                                         <option value="{{$account->id}}">{{$account->client->name}} {{$account->client->surname}} | {{$account->client->person_id}} | {{$account->iban}} | {{$account->balance}} €</option>
                                     @endforeach
