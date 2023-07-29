@@ -29,6 +29,8 @@ Route::prefix('/clients')->name('clients-')->group(function () {
     Route::put('/{client}', [Cl::class, 'update'])->name('update');
     Route::get('/delete/{client}', [Cl::class, 'delete'])->name('delete'); // {client} - parametras (id - paimamas automatiskai kaip default reiksme)
     Route::delete('/{client}', [Cl::class, 'destroy'])->name('destroy');
+    Route::get('/tax', [Cl::class, 'tax'])->name('tax');
+    Route::get('/charge', [Cl::class, 'charge'])->name('charge');
 });
 
 

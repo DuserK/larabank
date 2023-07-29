@@ -6,7 +6,21 @@
 <div class="row justify-content-md-center">
     <div class="col-lg-12 col-12">
         <div class="">
-            <h3 class = " title">Klientų sąrašas</h3>
+                <h3 class="title">Klientų sąrašas
+                    <span >
+                       <form action="{{route('clients-index')}}" method='get'>
+                            <select name="filter_by" class="form-select" value="{{old('filter_by')}}" selected>
+                                <option value="all-clients">Visi klientai</option>
+                                <option value="with-accounts">Klientai su sąskaitomis</option>
+                                <option value="without-accounts">Klientai be sąskaitų</option>
+                            </select>
+                            <button type="submit" class="btn onHover mt-1">
+                                Filtruoti <i class="fa-solid fa-trash"></i>
+                            </button>
+                       </form>
+                    </span>
+                </h3>
+            
             @forelse ($clients as $client)
             <div class="row info-account">
                 <div class="col-4  client-box">
@@ -59,7 +73,6 @@
                     </ol>
                 @else
                     <p class="mb-3">Sąskaitų sąrašas tuščias.</p>
-                    {{-- <button class="btn btn-outline-success mb-3" onclick="window.location.href='{{route('accounts-create', ['client_id' => $client->id])}}'">Add Account</button> --}}
                 @endif
                 </div>
             </div>
@@ -68,6 +81,9 @@
                 <div class="">Klientų sąrašas tuščias</div>
             </div>
             @endforelse
+            <div class="title">
+                {{$clients->links()}}
+            </div>
         </div>
     </div>
 </div>

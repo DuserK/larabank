@@ -4,26 +4,57 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Account;
-// use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-// use App\Http\Requests\Request;
-// use App\Http\Requests\Request; // specializuoti requestai
+
 
 class ClientController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $clients = Client::where('id', '>', 0)
-        //     ->orderBy('surname')
-        //     ->get();
+        $sortBy = 'surname';
+        $filterBy = $request->filter_by ?? '';
+
+        // filtravimas
+        $clients = Client::all();
+
+        if($filterBy == 'all-clients' || ''){
+            $clientsFiltered = Client::all();
+        } else if ($filterBy == 'with-accounts') {
+            $wa = [];  
+            foreach($clients as $client){
+                if($client->accounts()->count() != 0){
+                    $wa[] = $client->id;
+                }
+            }
+        } else if ($filterBy == 'without-accounts') {
+            $woa = [];  
+            foreach($clients as $client){
+                if($client->accounts()->count() == 0){
+                    $woa[] = $client->id;
+                }
+            }
+        }
+
+        $clientsFiltered = match($filterBy) {
+            'all-clients' => Client::paginate(5)->withQueryString(),
+            'with-accounts' => Client::whereIn('id', $wa)->paginate(5)->withQueryString(),
+            'without-accounts' => Client::whereIn('id', $woa)->paginate(5)->withQueryString(),
+            default => Client::paginate(5)->withQueryString()
+        };
+        $request->flash();
+
         return view('clients.index', [
-            'clients' => Client::where('id', '>', 0)
-            ->orderBy('surname')
-            ->get()
+            'clients' => $clientsFiltered,
+            'filterBy' => $filterBy
         ]);
     }
 
@@ -186,5 +217,28 @@ class ClientController extends Controller
         return redirect()
             ->route('clients-index')
             ->with('success', 'Klientas sėkmingai pašalintas');;
+    }
+
+    public function tax() 
+    {
+        return view('clients.tax', [
+            'clients' => Client::all(),
+        ]);
+    }
+
+    public function charge ()
+    {
+        $clients = Client::all();
+        foreach($clients as $client) {
+            if($client->accounts()->count() > 0) {
+                $caccount = $client->accounts()->first();
+                dump($caccount->balance);
+                $caccount->balance -= 5;
+                $caccount->save();
+            }
+        }
+        return redirect()
+            ->route('clients-index')
+            ->with('success', 'Visiems klientams nuskaičiuota po 5 Eur.');
     }
 }

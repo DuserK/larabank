@@ -12,13 +12,50 @@ use Illuminate\Support\Facades\Validator;
 
 class AccountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {        
+        $filterBy = $request->filter_by ?? 'all-accounts';
+
+        // filtravimas
+        // $accounts = Account::all();
+
+        // if($filterBy == 'all-clients' || ''){
+        //     $clientsFiltered = Client::all();
+        // } else if ($filterBy == 'with-accounts') {
+        //     $wa = [];  
+        //     foreach($clients as $client){
+        //         if($client->accounts()->count() != 0){
+        //             $wa[] = $client->id;
+        //         }
+        //     }
+        // } else if ($filterBy == 'without-accounts') {
+        //     $woa = [];  
+        //     foreach($clients as $client){
+        //         if($client->accounts()->count() == 0){
+        //             $woa[] = $client->id;
+        //         }
+        //     }
+        // }
+
+        $accountsFiltered = match($filterBy) {
+            'all-accounts' => Account::paginate(5)->withQueryString(),
+            'plus-accounts' => Account::where('balance', '>', 0)->paginate(5)->withQueryString(),
+            'zero-accounts' => Account::where('balance', '=', 0)->paginate(5)->withQueryString(),
+            'minus-accounts' => Account::where('balance', '<', 0)->paginate(5)->withQueryString(),
+        };
+        $request->flash();
+
+        
         return view('accounts.index', [
-            'accounts' => Account::all(),
+            'accounts' => $accountsFiltered,
+            'filterBy' => $filterBy
         ]);
     }
 
@@ -159,4 +196,6 @@ class AccountController extends Controller
         ->route('clients-index')
         ->with('success', 'Sąskaita sėkmingai pašalinta');;
     }
+
+
 }
